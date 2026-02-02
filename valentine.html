@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>San Valentino 💘</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #ffe6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .box {
+      text-align: center;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+    }
+    #yes {
+      background: #ff4d6d;
+      color: white;
+    }
+    #no {
+      position: absolute;
+      background: #999;
+      color: white;
+    }
+    .hidden {
+      display: none;
+    }
+    .photos {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+    .photos img {
+      width: 200px;
+      border-radius: 20px;
+    }
+    .heart {
+      font-size: 80px;
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: red;
+      animation: fall 3s linear infinite;
+    }
+    @keyframes fall {
+      from { top: -10px; }
+      to { top: 100vh; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="box" id="page1">
+  <h1>Emanuele 💖</h1>
+  <h2>Will you be my Valentine?</h2>
+  <button id="yes">Sì</button>
+  <button id="no">No</button>
+</div>
+
+<div class="box hidden" id="page2">
+  <h1>yayyy 💕<br>sapevo avresti detto di sì ❤️🙃</h1>
+  <div class="photos">
+    <img src="foto1.jpg">
+    <div class="heart">❤️</div>
+    <img src="foto2.jpg">
+  </div>
+</div>
+
+<audio id="music" src="die_with_a_smile.mp3"></audio>
+
+<script>
+  const noBtn = document.getElementById("no");
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 80 + "vw";
+    noBtn.style.top = Math.random() * 80 + "vh";
+  });
+
+  document.getElementById("yes").onclick = () => {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+    document.getElementById("music").play();
+
+    for (let i = 0; i < 40; i++) {
+      const c = document.createElement("div");
+      c.className = "confetti";
+      c.style.left = Math.random() * 100 + "vw";
+      c.style.background = ["#ff4d6d", "#ffb3c6", "#c9184a"][Math.floor(Math.random()*3)];
+      document.body.appendChild(c);
+    }
+  };
+</script>
+
+</body>
+</html>
